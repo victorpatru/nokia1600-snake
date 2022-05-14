@@ -172,19 +172,7 @@ addEventListener('keydown', e => changeDirection(e.keyCode))
 
 // Setting up the small screen buttons
 
-// document.getElementById('leftButton').addEventListener('click', changeDirection(LEFT_DIR))
-// document.getElementById('rightButton').addEventListener('click', changeDirection(RIGHT_DIR))
-// document.getElementById('upButton').addEventListener('click', changeDirection(UP_DIR))
-// document.getElementById('downButton').addEventListener('click', changeDirection(DOWN_DIR))
-
-
-const leftButton  = document.getElementById('leftButton')
-const rightButton  = document.getElementById('rightButton')
-const upButton  = document.getElementById('upButton')
-const downButton  = document.getElementById('downButton')
-
-//Add listeners for on-screen buttons
-leftButton.onclick = () => changeDirection(LEFT_DIR)
-rightButton.onclick = () => changeDirection(RIGHT_DIR)
-upButton.onclick = () => changeDirection(UP_DIR)
-downButton.onclick = () => changeDirection(DOWN_DIR)
+document.getElementById('leftButton').addEventListener('click', changeDirection(LEFT_DIR))
+document.getElementById('rightButton').addEventListener('click', changeDirection(RIGHT_DIR))
+document.getElementById('upButton').addEventListener('click', changeDirection(UP_DIR))
+document.getElementById('downButton').addEventListener('click', changeDirection(DOWN_DIR))
