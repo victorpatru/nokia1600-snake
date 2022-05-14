@@ -1,5 +1,5 @@
 ## 🐍 Snake Game
-Building the original Snake Game using Vanilla Javascript
+(Re)building the most fun and addictive game I grew up playing on my first phone, Nokia 1600.
 
 
 **Link to project:** https://dancing-belekoy-288c8b.netlify.app
