@@ -71,6 +71,7 @@ let snakeLength = 200
 // Provide the user with the ability to move the snake
 const moveSnake = () => {
     switch (snakeCurrentDirection) {
+        // Give the snake the ability to move to the left
         case LEFT_DIR:
             // Moving to the left means moving down in the array so that is why we are incrementing down the "currentHeadPosition variable"
             --currentHeadPosition
@@ -81,28 +82,41 @@ const moveSnake = () => {
                 currentFoodPosition = currentFoodPosition + LINE_PIXEL_COUNT
             }
             break;
+        // Give the snake the ability to move to the right
         case RIGHT_DIR:
-            // Stopped here
+            // Moving up the array means that we increment up the position in the variable "currentHeadPosition"
             ++currentHeadPosition
+            // Check whether we are at the 40th pixel (right snake game margin)
             const isHeadAtRight = currentHeadPosition % LINE_PIXEL_COUNT == 0
+            // If we are at the right margin put our snake all the way to the left margin of the game screen
             if (isHeadAtRight) {
                 currentHeadPosition = currentHeadPosition - LINE_PIXEL_COUNT
             }
             break;
+        // Give the snake the ability to move up
         case UP_DIR:
+            // Allows our snake to jump one row higher
+            // Eg. let's say our snake is at position 60 (middle of the second row), by moving up we want our snake to move to the middle of the first row (position 20) which we can do by substractin the pixel count (this case 40) from the current position of the head
             currentHeadPosition = currentHeadPosition - LINE_PIXEL_COUNT
+            // We substract and subtract until we touch the upper most part of the snake game board. At this point, we add the total pixel count (this case 1600) to the current snake position
+            // Doing this allows for our snake to reappear at the bottom of the board ONLY when it has moved at the upper most pixel on the top grid
             const isHeadAtTop = currentHeadPosition < 0
             if (isHeadAtTop) {
                 currentHeadPosition = currentHeadPosition + TOTAL_PIXEL_COUNT
             }
             break;
+        // Give our snake the ability to move down
         case DOWN_DIR:
+            // If we want to move down we need to move down the grid which can only be done by adding the line pixel count (this case 40 pixels)
             currentHeadPosition = currentHeadPosition + LINE_PIXEL_COUNT
+            // Once we have reached the bottom (position 1600) we substract that value
+            // This allows our snake to reappear at the top after having touched the bottom border
             const isHeadAtBottom = currentHeadPosition > TOTAL_PIXEL_COUNT - 1
             if (isHeadAtBottom) {
                 currentHeadPosition = currentHeadPosition - TOTAL_PIXEL_COUNT
             }
             break;
+        // Default case of our switch statement where the function returns (hint: prevents it from running) if the users' keys do not match the four given functions (up, bottom, left, right)
         default:
             break;
     }
