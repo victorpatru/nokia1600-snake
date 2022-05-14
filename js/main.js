@@ -46,7 +46,7 @@ let snakeCurrentDirection = RIGHT_DIR
 // Give the user the ability to change directions
 const changeDirection = newDirectionCode => {
     // If you're trying to move in the same direction as the current direction of the snake, do nothing
-    if (newDirectionCode === snakeCurrentDirection) return
+    if (newDirectionCode == snakeCurrentDirection) return
 
     // Here we make sure that when changing direction the user isn't able to do a full one 180 turn; eg. you cant do a left turn if you're moving to the right
     if (newDirectionCode == LEFT_DIR && snakeCurrentDirection !== RIGHT_DIR) {
@@ -157,4 +157,34 @@ const moveSnake = () => {
 
 }
 
+// Create the board and set up the food for the snake
+createBoardPixels()
+createFood()
 
+// Call the function moveSnake every 100 miliseconds
+let moveSnakeInterval = setInterval(moveSnake, 100)
+
+// On the window object add a keydown event listener that watches ever key pressed by the user
+// Every time a key is pressed we get an event object back that contains the keyCode of the key we pressed. eg. pressing the Arrow Up on the keyboard returns an object with the keyCode of 39
+// That keycode we then pass in our changeDirection function from above where we specifically watch out for four particular keys: Arrow Up, Arrow Down, Arrow Left, Arrow Right
+addEventListener('keydown', e => changeDirection(e.keyCode))
+
+
+// Setting up the small screen buttons
+
+// document.getElementById('leftButton').addEventListener('click', changeDirection(LEFT_DIR))
+// document.getElementById('rightButton').addEventListener('click', changeDirection(RIGHT_DIR))
+// document.getElementById('upButton').addEventListener('click', changeDirection(UP_DIR))
+// document.getElementById('downButton').addEventListener('click', changeDirection(DOWN_DIR))
+
+
+const leftButton  = document.getElementById('leftButton')
+const rightButton  = document.getElementById('rightButton')
+const upButton  = document.getElementById('upButton')
+const downButton  = document.getElementById('downButton')
+
+//Add listeners for on-screen buttons
+leftButton.onclick = () => changeDirection(LEFT_DIR)
+rightButton.onclick = () => changeDirection(RIGHT_DIR)
+upButton.onclick = () => changeDirection(UP_DIR)
+downButton.onclick = () => changeDirection(DOWN_DIR)
